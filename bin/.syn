@@ -1,0 +1,7 @@
+JDF B
+PROJECT
+DESIGN Normal
+DEVKIT
+ENTRY EDIF
+MODULE ./synplify/.edf
+MODSTYLE Normal
