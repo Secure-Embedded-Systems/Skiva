@@ -1,3 +1,0 @@
-i2c_master_bit_ctrl.vhd
-i2c_master_byte_ctrl.vhd
-i2coc.vhd

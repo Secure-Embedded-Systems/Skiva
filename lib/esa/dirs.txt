@@ -1,4 +1,0 @@
-memoryctrl
-pci
-leon2
-leon2ft

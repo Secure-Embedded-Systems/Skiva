@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<BaliProject version="1.3" title="" device="" default_implementation="">
-    <Options/>
-    <Implementation title="" dir="lattice" description="" default_strategy="Timing">
-        <Options/>

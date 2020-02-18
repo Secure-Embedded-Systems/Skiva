@@ -1,4 +1,0 @@
-mmuconfig.vhd
-mmuiface.vhd
-libmmu.vhd
-mmutlbcam.vhd mmulrue.vhd mmulru.vhd mmutlb.vhd mmutw.vhd mmu.vhd

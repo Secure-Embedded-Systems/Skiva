@@ -1,4 +1,0 @@
-#pcie.vhd
-#pcie_master_fifo_virtex.vhd
-#pcie_master_target_virtex.vhd
-#pciedma.vhd

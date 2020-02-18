@@ -1,2 +1,0 @@
-sim_pll.vhd
-lpddr2_phy_inferred.vhd

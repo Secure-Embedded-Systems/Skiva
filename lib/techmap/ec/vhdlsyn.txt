@@ -1,2 +1,0 @@
-memory_ec.vhd
-ddr_ec.vhd

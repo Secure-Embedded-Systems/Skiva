@@ -1,3 +1,0 @@
-clkgen_saed32.vhd
-pads_saed32.vhd
-memory_saed32.vhd

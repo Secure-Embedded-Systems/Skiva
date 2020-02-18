@@ -1,3 +1,0 @@
-#grusbhc_stratixii.vhd
-stratixii_ddr_phy.vhd
-clkgen_stratixii.vhd

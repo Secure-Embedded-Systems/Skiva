@@ -1,4 +1,0 @@
-grfpw_0_cycloneiii.vhd
-grlfpw_0_cycloneiii.vhd
-grfpw4_0_cycloneiii.vhd
-grlfpw4_0_cycloneiii.vhd
