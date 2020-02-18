@@ -1,0 +1,168 @@
+------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------
+-- Entity: 	spipeline
+-- File:	spipeline.vhd
+-- Author:	Zhimin Chen, SES, Virginia Tech
+-- Description:	5-stage secure pipeline
+------------------------------------------------------------------------------
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+use ieee.std_logic_arith.all;
+library grlib;
+use grlib.sparc.all;
+use grlib.stdlib.all;
+library techmap;
+use techmap.gencomp.all;
+library gaisler;
+use gaisler.leon3.all;
+use gaisler.libiu.all;
+use gaisler.arith.all;
+-- use gaisler.libproc3.all;
+-- pragma translate_off
+use grlib.sparc_disas.all;
+-- pragma translate_on
+
+entity spipeline is
+  generic (
+    wwslice   : integer range 1 to 32 := 32;
+    nwindows  : integer range 2 to 32 := 8;
+    memtech   : integer range 0 to NTECH  := DEFMEMTECH
+    );
+  port (
+    clk   : in  std_ulogic;
+    rstn  : in  std_ulogic;
+    holdn : in  std_ulogic;
+    rfi   : in  iregfile_in_type;
+    rfo   : out iregfile_out_type;
+    rsel1 : in  std_logic_vector(2 downto 0);
+    rsel2 : in  std_logic_vector(2 downto 0);
+    imm   : in  std_logic_vector(31 downto 0);
+    aluop : in  std_logic_vector(2 downto 0);
+    alusel: in  std_logic_vector(1 downto 0);
+    shleft: in  std_ulogic;
+    shcnt : in  std_logic_vector(4 downto 0);
+    sari  : in  std_ulogic;
+    smode : in  std_ulogic;
+    swreg : in  std_ulogic;
+    srd   : in  std_ulogic
+    );
+end;
+
+architecture rtl of spipeline is
+
+  component spipeline_dslice
+    generic (nwindows  : integer range 2 to 32 := 8;
+             memtech   : integer range 0 to NTECH  := DEFMEMTECH);
+    port    (clk   : in  std_ulogic;
+             rstn  : in  std_ulogic;
+             holdn : in  std_ulogic;
+             rfi   : in  iregfile_slice_in_type;
+             rfo   : out iregfile_slice_out_type;
+             rsel1 : in  std_logic_vector(2 downto 0);
+             rsel2 : in  std_logic_vector(2 downto 0);
+             imm   : in  std_logic_vector(0 downto 0);
+             aluop : in  std_logic_vector(2 downto 0);
+             alusel: in  std_logic_vector(1 downto 0);
+             shleft: in  std_ulogic;
+             shcnt : in  std_logic_vector(4 downto 0);
+             sari  : in  std_ulogic;
+             smode : in  std_ulogic;
+             swreg : in  std_ulogic;
+             shlin : in  std_logic_vector(30 downto 0);
+             shrin : in  std_logic_vector(30 downto 0);
+             shlout: out std_logic_vector(30 downto 0);
+             shrout: out std_logic_vector(30 downto 0);
+             rout  : out sreg;
+             srd   : in  std_ulogic);
+  end component;
+  
+  component spipeline_cslice
+    generic (nwindows  : integer range 2 to 32 := 8;
+             memtech   : integer range 0 to NTECH  := DEFMEMTECH);
+    port    (clk   : in  std_ulogic;
+             rstn  : in  std_ulogic;
+             holdn : in  std_ulogic;
+             rfi   : in  iregfile_slice_in_type;
+             rfo   : out iregfile_slice_out_type;
+             rsel1 : in  std_logic_vector(2 downto 0);
+             rsel2 : in  std_logic_vector(2 downto 0);
+             imm   : in  std_logic_vector(0 downto 0);
+             aluop : in  std_logic_vector(2 downto 0);
+             alusel: in  std_logic_vector(1 downto 0);
+             shleft: in  std_ulogic;
+             shcnt : in  std_logic_vector(4 downto 0);
+             sari  : in  std_ulogic;
+             smode : in  std_ulogic;
+             swreg : in  std_ulogic;
+             shlin : in  std_logic_vector(30 downto 0);
+             shrin : in  std_logic_vector(30 downto 0);
+             shlout: out std_logic_vector(30 downto 0);
+             shrout: out std_logic_vector(30 downto 0);
+             rout  : out sreg;
+             srd   : in  std_ulogic);
+  end component;
+  
+  signal shl : shifttype;
+  signal shr : shifttype;
+  signal rfi_slice_array : rfi_slice_array_type;
+  signal rfo_slice_array : rfo_slice_array_type;
+  
+  
+  -- for debug
+  signal sr : sreg_array_type;
+  signal se_op1    : std_logic_vector(31 downto 0);
+  signal se_op2    : std_logic_vector(31 downto 0);
+  signal sm_result : std_logic_vector(31 downto 0);
+  signal sx_result : std_logic_vector(31 downto 0);
+  signal sw_result : std_logic_vector(31 downto 0);
+
+begin
+  shl(0)  <= (others => '0');
+  shr(32) <= (others => '0');
+  gen_cslice : for I in 0 to 15 generate
+      rfi_slice_array(2*I).raddr1 <= rfi.raddr1;
+      rfi_slice_array(2*I).raddr2 <= rfi.raddr2;
+      rfi_slice_array(2*I).waddr  <= rfi.waddr;
+      rfi_slice_array(2*I).wdata  <= rfi.wdata(2*I downto 2*I);
+      rfi_slice_array(2*I).ren1   <= rfi.ren1;
+      rfi_slice_array(2*I).ren2   <= rfi.ren2;
+      rfi_slice_array(2*I).wren   <= rfi.wren;
+      rfi_slice_array(2*I).diag   <= rfi.diag;
+      rfo.data1(2*I downto 2*I)   <= rfo_slice_array(2*I).data1;
+      rfo.data2(2*I downto 2*I)   <= rfo_slice_array(2*I).data2;
+      gspipeline_cslice : spipeline_cslice
+        generic map (nwindows, memtech)
+        port map(clk, rstn, holdn, rfi_slice_array(2*I), rfo_slice_array(2*I), rsel1, rsel2, imm(2*I downto 2*I), aluop, alusel,
+                 shleft, shcnt, sari, smode, swreg, shl(2*I), shr(2*I+1), shl(2*I+1), shr(2*I), sr(2*I), srd);
+  end generate gen_cslice;
+  
+  gen_dslice : for I in 0 to 15 generate
+      rfi_slice_array(2*I+1).raddr1 <= rfi.raddr1;
+      rfi_slice_array(2*I+1).raddr2 <= rfi.raddr2;
+      rfi_slice_array(2*I+1).waddr  <= rfi.waddr;
+      rfi_slice_array(2*I+1).wdata  <= rfi.wdata(2*I+1 downto 2*I+1);
+      rfi_slice_array(2*I+1).ren1   <= rfi.ren1;
+      rfi_slice_array(2*I+1).ren2   <= rfi.ren2;
+      rfi_slice_array(2*I+1).wren   <= rfi.wren;
+      rfi_slice_array(2*I+1).diag   <= rfi.diag;
+      rfo.data1(2*I+1 downto 2*I+1)   <= rfo_slice_array(2*I+1).data1;
+      rfo.data2(2*I+1 downto 2*I+1)   <= rfo_slice_array(2*I+1).data2;
+      gspipeline_dslice : spipeline_dslice
+        generic map (nwindows, memtech)
+        port map(clk, rstn, holdn, rfi_slice_array(2*I+1), rfo_slice_array(2*I+1), rsel1, rsel2, imm(2*I+1 downto 2*I+1), aluop, alusel,
+                 shleft, shcnt, sari, smode, swreg, shl(2*I+1), shr(2*I+2), shl(2*I+2), shr(2*I+1), sr(2*I+1), srd);
+  end generate gen_dslice;
+  
+  gen_debug : for I in 0 to 31 generate
+      se_op1(I downto I) <= sr(I).e_op1;
+      se_op2(I downto I) <= sr(I).e_op2;
+      sm_result(I downto I) <= sr(I).m_result;
+      sx_result(I downto I) <= sr(I).x_result;
+      sw_result(I downto I) <= sr(I).w_result;
+  end generate gen_debug;
+
+end;
+
