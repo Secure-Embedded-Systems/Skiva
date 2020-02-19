@@ -174,7 +174,6 @@ designs/leon3-asic/alib-52/
 designs/leon3-asic/command.log
 designs/leon3-asic/leon3mp_mw_lib/*
 designs/leon3-asic/synopsys/techmap/*
-leon3-terasic-de2-115/
 *.qpf
 *.qsf
 
