@@ -10,6 +10,8 @@ This repository includes hardware design files for the Skiva project, building u
 
 ## Getting started
 To get the programmable file for Sakura-G FPGA board:
-`cd designs/leon3-sakura/`
-`make ise`
 
+```sh
+$ cd designs/leon3-sakura/
+$ make ise
+```
