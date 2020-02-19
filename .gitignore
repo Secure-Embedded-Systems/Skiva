@@ -177,6 +177,9 @@ designs/leon3-asic/synopsys/techmap/*
 leon3-terasic-de2-115/
 *.qpf
 *.qsf
+
+
+####################### software folder #####################
 asm-implems
 bin
 gdb
