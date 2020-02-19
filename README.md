@@ -1,13 +1,9 @@
 # Skiva 
 
 
-This repository includes design files for Skiva project, building upon the FAME-v2 specific modified version of GRLIB library of Cobham Gaisler. The repository adopts the file hierarchy of the original GRLIB distribution:
+This repository includes hardware and software design files for the Skiva project presented in COSADE 2020. 
 
-* bin:			various scripts and tool support files
-
-* boards:			support files for FPGA prototyping boards
-
-* designs:		template designs
-
-* lib: 			VHDL libraries
+### Organization
+* hardaware contains hardware design files for Skiva custom instructions added to LEON3 processor. 
+* software contains files to generate AES code using Skiva instructions 
 
