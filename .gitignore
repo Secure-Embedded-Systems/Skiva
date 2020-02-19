@@ -177,4 +177,9 @@ designs/leon3-asic/synopsys/techmap/*
 leon3-terasic-de2-115/
 *.qpf
 *.qsf
-
+asm-implems
+bin
+gdb
+results
+out_perfs.txt
+*~
