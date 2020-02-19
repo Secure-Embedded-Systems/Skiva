@@ -51,4 +51,4 @@ Where `PIPELNED="-D PIPELINED"` means temporal redundancy of 2
 redundancy (Rt=1). 
 
 This will generate a binary called `main` which can be loaded onto the
-FPGA and ran.
+FPGA and run.
