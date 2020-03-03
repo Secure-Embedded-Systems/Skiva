@@ -1,38 +1,28 @@
-Design Directory for port of FAMEv2 to Altera DE2-115 board
+# Design Directory for port of Skiva to Sakura-G FPGA board
 
-Top Level file is LEON3_DE2115.v
-Quartus Project file is LEON3_DE2115_quartus.qpf
-Synthesis can be triggered using command "make quartus" 
+Top Level file is leon3mp.vhd
+Synthesis can be triggered using command "make ise" 
 
-Pin Mapping:
+## Pin Mapping
 
-| FAMEv2 pin    | Function                               | DE2 pin          |
+| Skiva pin     | Function                               | Sakura-G pin     |
 |---------------|----------------------------------------|------------------|
-| resetn        | Global Reset                           | KEY[3]           |
-| clk           | Input clock                            | CLOCK_50         |
-| alarmout      | Alarm Out from leon3 if fault detected | LEDR[13]         |
-| DebugUart_RX  | AHBUART receive                        | GPIO[35],LEDG{1] |
-| DebugUart_TX  | AHBUART transmit                       | GPIO[33],LEDG[0] |
-| PeriphUart_RX | APBUART receive                        | GPIO[29],LEDG[3] |
-| PeriphUart_TX | APBUART transmit                       | GPIO[31],LEDG[2] |
-| dsuact        | Check if DSU is active                 | LEDR[17]         |
-| dsubre        | External Break signal for DSU          | SW[16]           |
-| gpio[0]       | GPIO                                   | GPIO[0],LEDR[0]  |
-| gpio[1]       | GPIO                                   | GPIO[1],LEDR[1]  |
-| gpio[2]       | GPIO                                   | GPIO[2],LEDR[2]  |
-| gpio[3]       | GPIO                                   | GPIO[3],LEDR[3]  |
-| gpio[4]       | GPIO                                   | GPIO[4],LEDR[4]  |
-| gpio[5]       | GPIO                                   | GPIO[5],LEDR[5]  |
-| gpio[6]       | GPIO                                   | GPIO[6],LEDR[6]  |
-| gpio[7]       | GPIO                                   | GPIO[7],LEDR[7]  |
-| triggerout[0] | TriggerOut from leon3                  | GPIO[17]         |
-| triggerout[1] | TriggerOut from leon3                  | GPIO[15]         |
-| triggerout[2] | TriggerOut from leon3                  | GPIO[13]         |
-| triggerout[3] | TriggerOut from leon3                  | GPIO[11]         |
-| dsuen         | Enable/Disable DSU                     | SW[17]           |
-| errorn        | Error Signal from Leon3                | LEDR[8]          |
+| btnCpuResetn  | Global Reset                           | SW3              |
+| clk           | External input clock                   | J4               |
+| RsRx          | AHBUART receive                        | CN3.2            |
+| RsTx          | AHBUART transmit                       | CN3.4            |
+| rxd1          | APBUART receive                        | CN3.6            |
+| txd1          | APBUART transmit                       | CN3.8            |
+| gpio[0]       | GPIO                                   | CN3.23           |
+| gpio[1]       | GPIO                                   | LED4             |
+| gpio[2]       | GPIO                                   | LED5             |
+| gpio[3]       | GPIO                                   | LED6             |
+| gpio[4]       | GPIO                                   | LED7             |
+| gpio[5]       | GPIO                                   | LED8             |
+| gpio[6]       | GPIO                                   | LED9             |
+| gpio[7]       | GPIO                                   | LED10            |
 
-
+## Communicating with the board using GRMON
 $ ./grmon.exe -u -uart //./com7.
 
   GRMON2 LEON debug monitor v2.0.90 64-bit eval version
