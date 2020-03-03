@@ -1,4 +1,4 @@
-# Design Directory for port of Skiva to Sakura-G FPGA board
+# Design Directory for port of Skiva on Sakura-G FPGA board
 
 Top Level file is leon3mp.vhd
 Synthesis can be triggered using command "make ise" 
@@ -23,6 +23,9 @@ Synthesis can be triggered using command "make ise"
 | gpio[7]       | GPIO                                   | LED10            |
 
 ## Communicating with the board using GRMON
+```sh
+$ grmon -u -uart /dev/ttyUSB0 
+```
 $ ./grmon.exe -u -uart //./com7.
 
   GRMON2 LEON debug monitor v2.0.90 64-bit eval version
