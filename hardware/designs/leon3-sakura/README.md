@@ -22,8 +22,18 @@ Synthesis can be triggered using command "make ise"
 | gpio[6]       | GPIO                                   | LED9             |
 | gpio[7]       | GPIO                                   | LED10            |
 
+## Setting up the board for power measurement
+
+  1. generate the leon3mp.bit file:
+        ```sh
+        $ make ise
+        ```
+  2. program the main FPGA on SAKURA-G with the generated leon3mp.bit using ISE iMPACT
+  3. 
+
 ## Communicating with the board using GRMON
 GRMON is provided in https://www.gaisler.com/index.php/downloads/debug-tools as a free debug tool which can connect to the debug UART on LEON3 and program the processor core.
+
 After installing the GRMON tool and programming the board with the .bit file, connect the debug UART to the system running the GRMON tool. Give the appropriate access rights to the USB port connected to the debug UART and run grmon. For example for debug UART connected to /dev/ttyUSB0:
 ```sh
 $ sudo chmod 777 /dev/ttyUSB0
