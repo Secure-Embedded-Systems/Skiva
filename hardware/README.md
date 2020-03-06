@@ -82,4 +82,21 @@ grmon3> run
 
 ```
 
+## Encoding of the New Instructions
+The encoding of the custom instructions follows that of format 3 instructions in SPARC v8. The figure below shows the encoding.
 
+![](https://github.com/Secure-Embedded-Systems/Skiva/blob/master/doc/format3.png) The encoding of format 3 SPARC v8 instructions.
+
+The following table shows the opcodes assigned to each custom instruction.
+
+| Instruction   | op  | op3   | i  |
+| ------------- |:---:| :----:|:--:|
+| TIBSROT       | 10  | 0x09  |1   |
+| RED           | 10  | 0x0d  |1   |
+| FTCHK         | 10  | 0x2e  |1   |
+| ANDC8         | 11  | 0x08  |0   |
+| XORC8         | 11  | 0x0c  |0   |
+| XNORC8        | 11  | 0x18  |0   |
+| ANDC16        | 11  | 0x0b  |0   |
+| XORC16        | 11  | 0x0e  |0   |
+| XNORC16       | 11  | 0x1b  |0   |
