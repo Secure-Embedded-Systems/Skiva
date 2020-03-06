@@ -1,6 +1,6 @@
 Hardware design files of Skiva 
 ===
-
+[![N|Solid](doc/diagram.pdf)]
 ## Organization 
 This repository includes hardware design files for the Skiva project, building upon the FAME-v2 specific modified version of GRLIB library of Cobham Gaisler. The repository adopts the file hierarchy of the original GRLIB distribution:
 * bin:			various scripts and tool support files
