@@ -1,4 +1,4 @@
-Hardware design files of Skiva 
+Hardware design of Skiva 
 ===
 ![alt text](https://github.com/Secure-Embedded-Systems/Skiva/blob/master/doc/diagram.png)
 ## Organization 
