@@ -82,6 +82,58 @@ grmon3> run
 
 ```
 
+## Address Map of Skiva
+
+| Module      | Address Information                               |
+|-------------|---------------------------------------------------|
+| ahb0        | Aeroflex Gaisler  AHB arbiter/mutiplexer          |
+|             | I/O area: 0xfff00000 - 0xffffffff                 |
+| u0          | FAME Processor Core                               |
+|             | AHB Master 0                                      |
+| dcom0       | Aeroflex Gaisler  AHB Debug UART                  |
+|             | AHB Master 1                                      |
+|             | APB Slave 2                                       |
+|             | APB: 80000300 - 800003ff                          |
+| dcom1       | Aeroflex Gaisler  AHB Debug UART                  |
+|             | AHB Master 2                                      |
+|             | APB Slave 3                                       |
+|             | APB: 80000400 - 800004ff                          |
+| apbctrl0    | Aeroflex Gaisler  AHB/APB Bridge                  |
+|             | AHB Slave 1                                       |
+|             | APB Master 0                                      |
+|             | AHB: 80000000 - 800fffff                          |
+| dsu0        | Aeroflex Gaisler  LEON3 Debug Support Unit        |
+|             | AHB Slave 1                                       |
+|             | AHB: 90000000 - 9fffffff                          |
+|             | CPU0:  win 8, hwbp 2, itrace 64, lddel 1          |
+|             | stack pointer 0x4001fff0                          |
+|             | icache 1 * 1 kB, 16 B/line                        |
+|             | dcache 1 * 1 kB, 16 B/line                        |
+| ahbrom0     | Aeroflex Gaisler  Generic AHB ROM                 |
+|             | AHB Slave 2                                       |
+|             | AHB: 00000000 - 000fffff                          |
+| ahbram0     | Aeroflex Gaisler  Single-port AHB SRAM module     |
+|             | AHB Slave 3                                       |
+|             | AHB: 40000000 - 400fffff                          |
+|             | 32-bit static ram: 128 kB @ 0x40000000            |
+| spimctrl0   | Aeroflex Gaisler  SPI Memory Controller           |
+|             | AHB Slave 4                                       |
+|             | AHB: FFF00200 - FFF002ff (I/O part)               |
+|             | AHB: 10000000 - 10ffffff (Memory part)            |
+| uart1       | Aeroflex Gaisler  Generic UART                    |
+|             | APB Slave 0                                       |
+|             | APB: 80000100 - 800001ff                          |
+| irqmp0      | Aeroflex Gaisler  Multi-processor Interrupt Ctrl. |
+|             | APB Slave 1                                       |
+|             | APB: 80000200 - 800002ff                          |
+| gpio0       | Aeroflex Gaisler  General Purpose I/O port        |
+|             | APB Slave 4                                       |
+|             | APB: 80000500 - 800005ff                          |
+| gptimer0    | Aeroflex Gaisler  Modular Timer Unit              |
+|             | APB Slave 5                                       |
+|             | APB: 80000600 - 800006ff                          |
+|             | 32-bit scalar, 5 * 32-bit timers, divisor 24      |
+
 ## Encoding of the New Instructions
 The encoding of the custom instructions follows that of format 3 instructions in SPARC v8. The figure below shows the encoding.
 
