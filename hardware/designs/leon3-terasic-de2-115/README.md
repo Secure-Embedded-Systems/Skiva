@@ -1,7 +1,8 @@
 # Design Directory for port of Skiva on  ALTERA DE2-115 FPGA board
 
-Top Level file is LEON3_DE2115.v
-Synthesis can be triggered using command "make quartus" 
+- Top Level file is LEON3_DE2115.v.
+- Synthesis can be triggered by the command "make quartus".
+- The Skiva port on the DE2 board uses the internal clock on the board oscillating at 50MHz.
 
 ## Pin Mapping
 
