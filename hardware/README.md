@@ -88,7 +88,7 @@ grmon3> run
 |-------------|---------------------------------------------------|
 | ahb0        | Aeroflex Gaisler  AHB arbiter/mutiplexer          |
 |             | I/O area: 0xfff00000 - 0xffffffff                 |
-| u0          | FAME Processor Core                               |
+| u0          | Skiva Processor Core                              |
 |             | AHB Master 0                                      |
 | dcom0       | Aeroflex Gaisler  AHB Debug UART                  |
 |             | AHB Master 1                                      |
