@@ -2,7 +2,7 @@
 
 - Top Level file is leon3mp.vhd.
 - Synthesis can be triggered by the command "make ise".
-- The Skiva port on SAKURA-G board requires an external clock connected to the J4 SMA connector.
+- The Skiva port on the SAKURA-G board requires an external clock connected to the J4 SMA connector.
 
 ## Pin Mapping
 
