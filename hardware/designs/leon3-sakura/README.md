@@ -1,7 +1,8 @@
 # Design Directory for port of Skiva on Sakura-G FPGA board
 
-Top Level file is leon3mp.vhd
-Synthesis can be triggered using command "make ise" 
+Top Level file is leon3mp.vhd.
+Synthesis can be triggered using command "make ise".
+The Skiva port on SAKURA-G board requires an external clock connected to the J4 SMA connector.
 
 ## Pin Mapping
 
