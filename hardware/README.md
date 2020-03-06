@@ -29,7 +29,9 @@ $ make quartus
 The generated programmable files LEON3_DE2115_quartus.sof and LEON3_DE2115_quartus.pof can be used to program the DE2 board.
 
 ### Ready programmable files
-In case you cannot generate the programmable files, you can use the ones available in folder. 
+In case you cannot generate the programmable files, you can use the ones available:
+- sakura_programmable_file.bit in ./designs/leon3-sakura/ for programming the main FPGA on the SAKURA-G board.
+- de2_programmable_file.pof in ./designs/leon3-terasic-de2-115/ for programming the DE2 FPGA board.
 
 
 ### Communicating with the board using GRMON
