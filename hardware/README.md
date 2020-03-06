@@ -143,7 +143,9 @@ The following table shows the opcodes assigned to each custom instruction.
 
 | Instruction   | op  | op3   | i  |
 | ------------- |:---:| :----:|:--:|
-| TIBSROT       | 10  | 0x09  |1   |
+| TR2           | 10  | 0x1d  |0   |
+| INVTR2        | 10  | 0x19  |0   |
+| SUBROT        | 10  | 0x09  |1   |
 | RED           | 10  | 0x0d  |1   |
 | FTCHK         | 10  | 0x2e  |1   |
 | ANDC8         | 11  | 0x08  |0   |
