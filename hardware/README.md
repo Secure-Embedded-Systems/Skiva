@@ -1,7 +1,6 @@
 Hardware design of Skiva 
 ===
-Figure [arch] shows the high-level diagram of Skiva.
-![arch](https://github.com/Secure-Embedded-Systems/Skiva/blob/master/doc/diagram.png)
+![arch]{width=70%}(https://github.com/Secure-Embedded-Systems/Skiva/blob/master/doc/diagram.png)
 ## Organization 
 This repository includes hardware design files for the Skiva project, building upon the FAME-v2 specific modified version of GRLIB library of Cobham Gaisler. The repository adopts the file hierarchy of the original GRLIB distribution:
 * bin:			various scripts and tool support files
