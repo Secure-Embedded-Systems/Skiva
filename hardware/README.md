@@ -16,14 +16,14 @@ This repository includes hardware design files for the Skiva project, building u
 ### SAKURA-G board
 To get the programmable file for Sakura-G FPGA board, run the following commands:
 ```sh
-$ cd designs/leon3-sakura/
+$ cd ./designs/leon3-sakura/
 $ make ise
 ```
 The output file is leon3mp.bit and can be programmed on the main FPGA on Sakura-G board.
 ### DE2 board
 To get the programmable file for DE2 FPGA board, run the following commands:
 ```sh
-$ cd designs/leon3-terasic-de2-115/
+$ cd ./designs/leon3-terasic-de2-115/
 $ make quartus
 ```
 The generated programmable files LEON3_DE2115_quartus.sof and LEON3_DE2115_quartus.pof can be used to program the DE2 board.
