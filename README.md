@@ -5,7 +5,7 @@ This repository includes hardware and software design files for the Skiva projec
 
 ## Organization
 * **hardaware** folder contains hardware design files for Skiva custom instructions added to LEON3 processor. The hardware design contains ports of the Skiva for DE2 and Sakura-G FPGA boards. 
-* **software** folder contains files to generate AES code using Skiva instructions 
+* **software** folder contains files to generate AES code using Skiva instructions. 
 
 
 ## References
