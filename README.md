@@ -4,7 +4,7 @@
 This repository includes hardware and software design files for the Skiva project presented in COSADE 2020. 
 
 ## Organization
-* **hardaware** folder contains hardware design files for Skiva custom instructions added to LEON3 processor. 
+* **hardaware** folder contains hardware design files for Skiva custom instructions added to LEON3 processor. The hardware design contains ports of the Skiva for DE2 and Sakura-G FPGA boards. 
 * **software** folder contains files to generate AES code using Skiva instructions 
 
 
